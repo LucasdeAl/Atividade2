@@ -7,25 +7,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.ufc.mandacaru5.model.User;
-import br.ufc.mandacaru5.repository.ProductRepository;
+import br.ufc.mandacaru5.repository.UserRepository;
 
 @Service
-public class ProductService {
+public class UserService {
 
 	@Autowired
-	ProductRepository productRepository;
+	UserRepository userRepository;
 
 	public void save(int id, User entity) {
 		if (id != 0) {
 			entity.setId(id);
 		}
 
-		productRepository.save(entity);
+		userRepository.save(entity);
 	}
 
 	public void delete(int id) {
 		User user = find(id);
-		productRepository.delete(user);
+		userRepository.delete(user);
 	}
 
 	public User find(int id) {
@@ -33,7 +33,7 @@ public class ProductService {
 			return null;
 		}
 
-		Optional<User> user = productRepository.findById(id);
+		Optional<User> user = userRepository.findById(id);
 
 		if (user.isPresent()) {
 			return user.get();
@@ -43,7 +43,7 @@ public class ProductService {
 	}
 
 	public List<User> findAll() {
-		return productRepository.findAll();
+		return userRepository.findAll();
 	}
 
 	public User findByName(String str) {
@@ -51,7 +51,7 @@ public class ProductService {
 			return null;
 		}
 
-		return productRepository.findFirstByName(str);
+		return userRepository.findFirstByName(str);
 	}
 
 }

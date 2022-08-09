@@ -8,34 +8,34 @@ import org.springframework.stereotype.Service;
 
 import br.ufc.mandacaru5.model.Property;
 import br.ufc.mandacaru5.model.User;
-import br.ufc.mandacaru5.repository.FeedbackRepository;
-import br.ufc.mandacaru5.repository.ProductRepository;
+import br.ufc.mandacaru5.repository.PropertyRepository;
+import br.ufc.mandacaru5.repository.UserRepository;
 
 @Service
-public class FeedbackService {
+public class PropertyService {
 
 	@Autowired
-	FeedbackRepository feedbackRepository;
+	PropertyRepository propertyRepository;
 	
 	@Autowired
-	ProductRepository productRepository;
+	UserRepository userRepository;
 
 	public void update(int id, Property entity) {
 		Property property = find(id);		
 		property.setTitle(entity.getTitle());
 		
-		feedbackRepository.save(property);				
+		propertyRepository.save(property);				
 	}
 	
 	public void save(int product_id, Property entity) {
-		User user = productRepository.findById(product_id).get();
+		User user = userRepository.findById(product_id).get();
 		entity.setUser(user);
-		feedbackRepository.save(entity);				
+		propertyRepository.save(entity);				
 	}
 
 	public void delete(int id) {
 		Property property = find(id);
-		feedbackRepository.delete(property);
+		propertyRepository.delete(property);
 	}
 
 	public Property find(int id) {
@@ -43,7 +43,7 @@ public class FeedbackService {
 			return null;
 		}
 
-		Optional<Property> property = feedbackRepository.findById(id);
+		Optional<Property> property = propertyRepository.findById(id);
 
 		if (property.isPresent()) {
 			return property.get();
@@ -53,6 +53,6 @@ public class FeedbackService {
 	}
 
 	public List<Property> findAll(int product_id) {
-		return feedbackRepository.findByProductId(product_id);
+		return propertyRepository.findByProductId(product_id);
 	}
 }

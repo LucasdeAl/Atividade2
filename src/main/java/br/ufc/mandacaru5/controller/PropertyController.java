@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufc.mandacaru5.model.Property;
-import br.ufc.mandacaru5.service.FeedbackService;
+import br.ufc.mandacaru5.service.PropertyService;
 
 @RestController
 @RequestMapping(path = "/api")
-public class FeedbackController {
+public class PropertyController {
 
 	@Autowired
-	FeedbackService service;
+	PropertyService service;
 
 	@GetMapping("/products/{id}/feedbacks")
 	public ResponseEntity<List<Property>> findAll(@PathVariable(value = "id") int id) {

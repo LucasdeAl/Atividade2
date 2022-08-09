@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufc.mandacaru5.model.User;
-import br.ufc.mandacaru5.service.ProductService;
+import br.ufc.mandacaru5.service.UserService;
 
 @RestController
 @RequestMapping(path = "/api/products")
-public class ProductController {
+public class UserController {
 
 	@Autowired
-	ProductService service;
+	UserService service;
 
 	@GetMapping
 	public ResponseEntity<List<User>> findAll() {
