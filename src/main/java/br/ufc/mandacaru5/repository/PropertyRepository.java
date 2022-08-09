@@ -8,5 +8,5 @@ import br.ufc.mandacaru5.model.Property;
 
 public interface PropertyRepository extends JpaRepository<Property, Integer> {
 
-	List<Property> findByProductId(int id);
+	List<Property> findByUserId(int id);
 }

@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="users")
 public class User {
 
 	@Id
@@ -20,7 +22,7 @@ public class User {
 	private String phoneNumber;
 	private String Address;
 	
-	@OneToMany(mappedBy = "property")
+	@OneToMany(mappedBy = "user")
 	private List<Property> properties;
 	
 

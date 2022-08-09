@@ -19,7 +19,7 @@ import br.ufc.mandacaru5.model.User;
 import br.ufc.mandacaru5.service.UserService;
 
 @RestController
-@RequestMapping(path = "/api/products")
+@RequestMapping(path = "/api/user")
 public class UserController {
 
 	@Autowired

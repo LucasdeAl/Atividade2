@@ -53,6 +53,6 @@ public class PropertyService {
 	}
 
 	public List<Property> findAll(int product_id) {
-		return propertyRepository.findByProductId(product_id);
+		return propertyRepository.findByUserId(product_id);
 	}
 }

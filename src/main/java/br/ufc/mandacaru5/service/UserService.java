@@ -47,7 +47,7 @@ public class UserService {
 	}
 
 	public User findByName(String str) {
-		if (str.length() < 3) {
+		if (str.length() < 1) {
 			return null;
 		}
 

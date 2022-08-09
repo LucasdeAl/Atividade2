@@ -24,27 +24,27 @@ public class PropertyController {
 	@Autowired
 	PropertyService service;
 
-	@GetMapping("/products/{id}/feedbacks")
+	@GetMapping("/user/{id}/properties")
 	public ResponseEntity<List<Property>> findAll(@PathVariable(value = "id") int id) {
 		return new ResponseEntity<List<Property>>(service.findAll(id), HttpStatus.OK);
 	}
 
-	@GetMapping("/feedbacks/{id}")
+	@GetMapping("/properties/{id}")
 	public ResponseEntity<Property> find(@PathVariable("id") int id) {
 		return new ResponseEntity<Property>(service.find(id), HttpStatus.OK);
 	}
 
-	@PostMapping("/products/{id}/feedbacks")
+	@PostMapping("/user/{id}/properties")
 	public void save(@PathVariable("id") int product_id, @RequestBody Property property) {
 		service.save(product_id, property);
 	}
 
-	@PutMapping("/feedbacks/{id}")
+	@PutMapping("/properties/{id}")
 	public void update(@PathVariable("id") int id, @RequestBody Property property) {
 		service.update(id, property);
 	}
 
-	@DeleteMapping("/feedbacks/{id}")
+	@DeleteMapping("/properties/{id}")
 	public void delete(@PathVariable("id") int id) {
 		service.delete(id);
 	}
