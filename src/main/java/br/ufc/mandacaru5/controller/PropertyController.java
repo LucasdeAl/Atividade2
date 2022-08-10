@@ -35,8 +35,8 @@ public class PropertyController {
 	}
 
 	@PostMapping("/user/{id}/properties")
-	public void save(@PathVariable("id") int product_id, @RequestBody Property property) {
-		service.save(product_id, property);
+	public void save(@PathVariable("id") int user_id, @RequestBody Property property) {
+		service.save(user_id, property);
 	}
 
 	@PutMapping("/properties/{id}")
