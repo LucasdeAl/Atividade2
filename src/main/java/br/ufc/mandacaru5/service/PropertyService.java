@@ -55,4 +55,15 @@ public class PropertyService {
 	public List<Property> findAll(int product_id) {
 		return propertyRepository.findByUserId(product_id);
 	}
+	
+	public List<Property> findAllProperties()
+		{
+			return propertyRepository.findAll();
+		}
+	
+	public Property findByTitle(String title)
+	{
+		return propertyRepository.findByTitle(title);
+	}
+	
 }

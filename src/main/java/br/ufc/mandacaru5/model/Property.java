@@ -21,7 +21,7 @@ public class Property {
 	private Double terrainArea;
 	private Double constructedArea;
 	private int rooms;
-	private int bathroons;
+	private int bathroons;		
 	private int garageVacancies;
 	private double price;
 	private String status;

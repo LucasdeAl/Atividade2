@@ -33,7 +33,18 @@ public class PropertyController {
 	public ResponseEntity<Property> find(@PathVariable("id") int id) {
 		return new ResponseEntity<Property>(service.find(id), HttpStatus.OK);
 	}
+	
+	@GetMapping("/properties/search")
+	public ResponseEntity<Property> find(@PathVariable("title") String title) {
+		return new ResponseEntity<Property>(service.findByTitle(title), HttpStatus.OK);
+	}
 
+
+	@GetMapping("/properties")
+	public ResponseEntity<List<Property>> findAllProperties() {
+		return new ResponseEntity<List<Property>>(service.findAllProperties(), HttpStatus.OK);
+	}
+	
 	@PostMapping("/user/{id}/properties")
 	public void save(@PathVariable("id") int user_id, @RequestBody Property property) {
 		service.save(user_id, property);
