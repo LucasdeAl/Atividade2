@@ -50,7 +50,6 @@ public class UserService {
 		if (str.length() < 1) {
 			return null;
 		}
-
 		return userRepository.findFirstByName(str);
 	}
 
