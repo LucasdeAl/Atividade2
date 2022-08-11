@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufc.mandacaru5.model.Property;
+import br.ufc.mandacaru5.model.User;
 import br.ufc.mandacaru5.service.PropertyService;
 
 @RestController
@@ -31,12 +33,25 @@ public class PropertyController {
 
 	@GetMapping("/properties/{id}")
 	public ResponseEntity<Property> findById(@PathVariable("id") int id) {
-		return new ResponseEntity<Property>(service.find(id), HttpStatus.OK);
+		Property property = service.find(id);
+
+		if (property != null) {
+			return new ResponseEntity<Property>(property, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Property>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@GetMapping("/properties/search")
-	public ResponseEntity<Property> findByTitle(@PathVariable("title") String title) {
-		return new ResponseEntity<Property>(service.findByTitle(title), HttpStatus.OK);
+	public ResponseEntity<Property> findByTitle(@RequestParam("title") String title) {
+		
+		Property property = service.findByTitle(title);
+
+		if (property != null) {
+			return new ResponseEntity<Property>(property, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Property>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 

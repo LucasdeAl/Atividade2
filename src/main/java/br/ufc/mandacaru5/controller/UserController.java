@@ -32,15 +32,21 @@ public class UserController {
 
 	@GetMapping(path = "{id}")
 	public ResponseEntity<User> find(@PathVariable("id") int id) {
-		return new ResponseEntity<User>(service.find(id), HttpStatus.OK);
+		User user = service.find(id);
+
+		if (user != null) {
+			return new ResponseEntity<User>(user, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@GetMapping(path = "/search")
 	public ResponseEntity<User> findByName(@RequestParam("name") String name) {
 		User user = service.findByName(name);
-		
-		if(user != null) {
-			return new ResponseEntity<User>(user, HttpStatus.OK);	
+
+		if (user != null) {
+			return new ResponseEntity<User>(user, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 		}

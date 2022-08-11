@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.ufc.mandacaru5.model.Property;
 import br.ufc.mandacaru5.model.User;
 import br.ufc.mandacaru5.repository.UserRepository;
 
@@ -21,6 +22,13 @@ public class UserService {
 		}
 
 		userRepository.save(entity);
+	}
+	
+	public void update(int id, User entity) {
+		User user = find(id);		
+		user.setName(entity.getName());
+		
+		userRepository.save(user);				
 	}
 
 	public void delete(int id) {
@@ -52,5 +60,6 @@ public class UserService {
 		}
 		return userRepository.findFirstByName(str);
 	}
+	
 
 }
