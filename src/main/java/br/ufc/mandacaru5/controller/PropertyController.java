@@ -30,12 +30,12 @@ public class PropertyController {
 	}
 
 	@GetMapping("/properties/{id}")
-	public ResponseEntity<Property> find(@PathVariable("id") int id) {
+	public ResponseEntity<Property> findById(@PathVariable("id") int id) {
 		return new ResponseEntity<Property>(service.find(id), HttpStatus.OK);
 	}
 	
 	@GetMapping("/properties/search")
-	public ResponseEntity<Property> find(@PathVariable("title") String title) {
+	public ResponseEntity<Property> findByTitle(@PathVariable("title") String title) {
 		return new ResponseEntity<Property>(service.findByTitle(title), HttpStatus.OK);
 	}
 

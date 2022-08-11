@@ -21,7 +21,7 @@ public class Property {
 	private Double terrainArea;
 	private Double constructedArea;
 	private int rooms;
-	private int bathroons;		
+	private int bathrooms;		
 	private int garageVacancies;
 	private double price;
 	private String status;
@@ -37,7 +37,7 @@ public class Property {
 	}
 
 	public Property(int id, String title, String address, Double terrainArea, Double constructedArea, int rooms,
-			int bathroons, int garageVacancies, double price, String status, User user) {
+			int bathrooms, int garageVacancies, double price, String status, User user) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -45,7 +45,7 @@ public class Property {
 		this.terrainArea = terrainArea;
 		this.constructedArea = constructedArea;
 		this.rooms = rooms;
-		this.bathroons = bathroons;
+		this.bathrooms = bathrooms;
 		this.garageVacancies = garageVacancies;
 		this.price = price;
 		this.status = status;
@@ -55,7 +55,7 @@ public class Property {
 	@Override
 	public String toString() {
 		return "Imovel [id=" + id + ", title=" + title + ", address=" + address + ", terrainArea=" + terrainArea
-				+ ", constructedArea=" + constructedArea + ", rooms=" + rooms + ", bathroons=" + bathroons
+				+ ", constructedArea=" + constructedArea + ", rooms=" + rooms + ", bathrooms=" + bathrooms
 				+ ", garageVacancies=" + garageVacancies + ", price=" + price + ", status=" + status + ", user=" + user
 				+ "]";
 	}
@@ -101,11 +101,11 @@ public class Property {
 	}
 
 	public int getBathroons() {
-		return bathroons;
+		return bathrooms;
 	}
 
 	public void setBathroons(int bathroons) {
-		this.bathroons = bathroons;
+		this.bathrooms = bathroons;
 	}
 
 	public int getGarageVacancies() {
