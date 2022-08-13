@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imov</title>
+    <script src="https://unpkg.com/vue@2.7.7/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            Id: <input type="text" name="" id="" v-model="id" /><br /><br />
+            title: <input type="text" name="" id="" v-model="title" /><br /><br />
+            address: <input type="text" name="" id="" v-model="address" /><br /><br />
+            terrainArea: <input type="number" name="" id="" v-model="terrainArea" /><br /><br />
+            constructedArea: <input type="number" name="" id="" v-model="constructedArea" /><br /><br />
+            rooms: <input type="number" name="" id="" v-model="rooms" /><br /><br />
+            bathrooms: <input type="number" name="" id="" v-model="bathrooms" /><br /><br />
+            garageVacancies: <input type="number" name="" id="" v-model="garageVacancies" /><br /><br />
+            price: <input type="price" name="" id="" v-model="price" /><br /><br />
+            status: <input type="text" name="" id="" v-model="status" /><br /><br />
+
+            <button @click="fetchProperties">Fetch Properties</button><br /><br />
+            <button @click="fetchPropertyById">Fetch Property By Id</button><br /><br />
+            <button @click="fetchPropertyByTitle">Fetch Property By Title</button><br /><br />
+            <button @click="postProperty">Post Property</button><br /><br />
+            <button @click="putProperty">Put Property</button><br /><br />
+            <button @click="deletePropertyById">Delete Property</button><br /><br />
+
+            <p>{{ property }}</p>
+
+            <ul>
+                <li v-for="property in properties" :key="property.id">
+                    <h4>{{ property.id }}</h4>
+                    <p>{{ property.title }}</p>
+                    <p>{{ property.address }}</p>
+                    <p>{{ property.terrain }}</p>
+                    <p>{{ property.construcion }}</p>
+                    <p>{{ property.rooms }}</p>
+                    <p>{{ property.bathrooms }}</p>
+                    <p>{{ property.garageVacancies }}</p>
+                    <p>{{ property.price }}</p>
+                    <p>{{ property.status }}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                id: 0,
+                title: "",
+                address: "",
+                terrainArea: "",
+                constructedArea: "",
+                rooms: "",
+                bathrooms: "",
+                garageVacancies: "",
+                price: "",
+                status: "",
+                property: {},
+                properties: [],
+                baseURI: "http://localhost:8080/api/user/1/properties",
+            },
+            methods: {
+                fetchProperties: function () {
+                    axios.get(this.baseURI).then((result) => {
+                        this.properties = result.data;
+                    });
+                },
+                fetchPropertyById: function () {
+                    axios
+                        .get(this.baseURI + "/" + this.id)
+                        .then((result) => {
+                            this.property = result.data;
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                fetchPropertyByTitle: function () {
+                    axios
+                        .get(this.baseURI + "/search?title=" + this.title)
+                        .then((result) => {
+                            this.property = result.data;
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                postProperty: function () {
+                    let obj = {
+                        title: this.title,
+                        address: this.address,
+                        terrain: this.terrain,
+                        constructedArea: this.constructedArea,
+                        rooms: this.rooms,
+                        bathrooms: this.bathrooms,
+                        garageVacancies: this.garageVacancies,
+                        price: parseFloat(this.price),
+                        status: this.status,
+                    };
+
+                    axios.post(this.baseURI, new URLSearchParams(obj), {
+                        'Content-Type': 'application/x-www-form-urlencoded;'
+                    }).then((result) => {
+                        this.property = result.data;
+                    });
+                },
+                putProperty: function () {
+                    let obj = {
+                        title: this.title,
+                        address: this.address,
+                        terrain: this.terrain,
+                        constructedArea: this.constructedArea,
+                        rooms: this.rooms,
+                        bathrooms: this.bathrooms,
+                        garageVacancies: this.garageVacancies,
+                        price: parseFloat(this.price),
+                    };
+
+                    axios.put(this.baseURI + "/" + this.id, new URLSearchParams(obj), {
+                        'Content-Type': 'application/x-www-form-urlencoded;'
+                    }).then((result) => {
+                        this.property = result.data;
+                    });
+                },
+                deletePropertyById: function () {
+                    axios.delete(this.baseURI + "/" + this.id).then((result) => {
+                        console.log(result.status);
+                    });
+                },
+            },
+        });
+    </script>
+
+</body>
+
+</html>
